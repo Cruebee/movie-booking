@@ -5,7 +5,7 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 // adding + in front of movieSelect is same as wrapping it in parseInt function, turning it from a string into a number
-const ticketPrice = +movieSelect.value;
+let ticketPrice = +movieSelect.value;
 
 // Functions
 
@@ -22,6 +22,14 @@ function updateSelectedCount() {
 }
 
 // Event listeners
+
+// Movie select event
+movieSelect.addEventListener('change', (e) => {
+  ticketPrice = +e.target.value;
+  updateSelectedCount();
+});
+
+// Seat click event
 container.addEventListener('click', (e) => {
   //console.log(e.target);
   if (
