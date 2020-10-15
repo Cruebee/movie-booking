@@ -4,6 +4,7 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
+// function call to populate localStorage data into UI
 populateUI();
 
 // adding + in front of movieSelect is same as wrapping it in parseInt function, turning it from a string into a number
