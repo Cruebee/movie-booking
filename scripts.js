@@ -4,6 +4,8 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
+populateUI();
+
 // adding + in front of movieSelect is same as wrapping it in parseInt function, turning it from a string into a number
 let ticketPrice = +movieSelect.value;
 
@@ -35,6 +37,26 @@ function updateSelectedCount() {
   total.innerText = selectedSeatsCount * ticketPrice;
 }
 
+// Get data from localStorage and populate UI
+function populateUI() {
+  const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+
+  if(selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      if(selectedSeats.indexOf(index) > -1) {
+        seat.classList.add('selected');
+      }
+    });
+  }
+
+  const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+
+  if(selectedMovieIndex !== null) {
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
+}
+
+
 // Event listeners
 
 // Movie select event
@@ -57,3 +79,6 @@ container.addEventListener('click', (e) => {
     updateSelectedCount();
   }
 });
+
+// Set/update initial count and total
+updateSelectedCount();
